@@ -1,6 +1,6 @@
 # MarvelHeroes
 
-This is sample project to study about React universe.
+This is a sample project to study about React universe.
 
 - [ ] Setup react
 - [ ] Setup webpack
