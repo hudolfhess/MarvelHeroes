@@ -2,7 +2,7 @@
 
 This is a sample project to study about React universe.
 
-- [ ] Setup react
+- [x] Setup react
 - [ ] Setup webpack
 - [ ] Setup tests (enzyme)
 - [ ] Create a simple component with list of heroes
