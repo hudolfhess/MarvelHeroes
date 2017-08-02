@@ -1,27 +1,29 @@
+import md5 from 'md5'
+
 class HeroesGatewayMarvel {
+    constructor() {
+        this.marvelUrl = 'https://gateway.marvel.com/v1/public/'
+        this.heroesUri = 'characters'
+        this.publicKey = process.env.MARVEL_PUBLIC_KEY
+        this.privateKey = process.env.MARVEL_PRIVATE_KEY
+    }
+
     getHeroesByName(name) {
-        return Promise.resolve([
-            {
-                id: 1,
-                name: 'Iron Man',
-                image: '--'
-            },
-            {
-                id: 2,
-                name: 'Spider Man',
-                image: '--'
-            },
-            {
-                id: 3,
-                name: 'Capitain America',
-                image: '--'
-            },
-            {
-                id: 4,
-                name: 'Thor',
-                image: '--'
-            }
-        ])
+        const timestamp = new Date().getTime()
+        const hashKey = md5(timestamp + this.privateKey + this.publicKey)
+        const queryStringKey = `apikey=${this.publicKey}&hash=${hashKey}&ts=${timestamp}`
+
+        return fetch(`${this.marvelUrl}${this.heroesUri}?${queryStringKey}`)
+            .then(data => (data.json()))
+            .then(data => {
+                return data.data.results.map(character => {
+                    return {
+                        id: character.id,
+                        name: character.name,
+                        image: `${character.thumbnail.path}.${character.thumbnail.extension}?${queryStringKey}`
+                    }
+                })
+            })
     }
 }
 

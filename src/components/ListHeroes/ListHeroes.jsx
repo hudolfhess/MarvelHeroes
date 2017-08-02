@@ -14,13 +14,15 @@ class ListHeroes extends Component {
 
     componentDidMount() {
         this.heroesGateway.getHeroesByName('iron man').then(heroes => {
-            console.log(heroes)
             this.setState({ heroes })
         })
     }
 
     getHeroRow(hero) {
-        return <li key={hero.id} className="heroRow">{hero.name}</li>
+        return <li key={hero.id} className="heroRow">
+            <img src={hero.image} width='130px' height='130px' />
+            <p>{hero.name}</p>
+        </li>
     }
 
     render() {

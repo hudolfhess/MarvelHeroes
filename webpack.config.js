@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const autoprefixer = require('autoprefixer')
 
@@ -30,6 +31,10 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new ExtractTextPlugin({
             filename: 'application.css'
+        }),
+        new Dotenv({
+            path: `${staticPath}/.env`,
+            safe: false
         })
     ],
     devtool: 'source-map',
@@ -71,4 +76,7 @@ module.exports = {
             },
         ],
     },
+    node: {
+        fs: 'empty'
+    }
 }
