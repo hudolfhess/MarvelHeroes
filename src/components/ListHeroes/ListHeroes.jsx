@@ -13,7 +13,7 @@ class ListHeroes extends Component {
     }
 
     componentDidMount() {
-        this.heroesGateway.getHeroesByName('iron man').then(heroes => {
+        this.heroesGateway.getHeroesByName('spider-man').then(heroes => {
             this.setState({ heroes })
         })
     }

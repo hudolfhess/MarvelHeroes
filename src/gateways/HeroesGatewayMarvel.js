@@ -11,7 +11,7 @@ class HeroesGatewayMarvel {
     getHeroesByName(name) {
         const timestamp = new Date().getTime()
         const hashKey = md5(timestamp + this.privateKey + this.publicKey)
-        const queryStringKey = `apikey=${this.publicKey}&hash=${hashKey}&ts=${timestamp}`
+        const queryStringKey = `nameStartsWith=${name}&apikey=${this.publicKey}&hash=${hashKey}&ts=${timestamp}`
 
         return fetch(`${this.marvelUrl}${this.heroesUri}?${queryStringKey}`)
             .then(data => (data.json()))
