@@ -1,0 +1,40 @@
+.container {
+    padding: 15px 30px;
+    margin: 0 auto;
+    max-width: 1000px;
+    background-color: #eee;
+}
+
+.listHeroes {
+    list-style: none;
+    margin: 0px;
+}
+
+.heroRow {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+}
+
+.heroImage {
+    width: 120px;
+    height: 120px;
+    padding: 10px;
+    background-color: #ccc;
+    flex-grow: 0;
+}
+
+.heroImage img {
+    width: 120px;
+    height: 120px;
+}
+
+.heroInfo {
+    padding: 10px;
+    flex-grow: 1;
+}
+
+.heroStories span {
+    font-size: 12px;
+    display: block;
+}
