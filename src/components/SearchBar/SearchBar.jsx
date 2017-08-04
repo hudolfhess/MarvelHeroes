@@ -19,7 +19,7 @@ class SearchBar extends Component {
             window.clearTimeout(this.state.timeOutHandler)
         }
         const timeOutHandler = window.setTimeout(search => {
-            this.props.onChange(this.state.search)
+            this.props.onChange(search)
         }, 300, search)
 
         this.setState({ timeOutHandler, search })
