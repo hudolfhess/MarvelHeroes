@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import HeroesGatewayMarvel from '../../gateways/HeroesGatewayMarvel'
+import SearchBar from '../SearchBar/SearchBar'
 import styles from './ListHeroes.scss'
 
 class ListHeroes extends Component {
@@ -12,13 +13,25 @@ class ListHeroes extends Component {
         }
 
         this.heroesGateway = new HeroesGatewayMarvel()
+        this._handlerOnChangeSearch = search => this.handlerOnChangeSearch(search)
     }
 
     componentDidMount() {
         this.heroesGateway.getHeroesByName(this.state.search).then(heroes => {
-            console.log(heroes)
             this.setState({ heroes })
         })
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.search !== prevState.search) {
+            this.heroesGateway.getHeroesByName(this.state.search).then(heroes => {
+                this.setState({ heroes })
+            })
+        }
+    }
+
+    handlerOnChangeSearch(search) {
+        this.setState({ search })
     }
 
     getHeroRow(hero) {
@@ -30,9 +43,10 @@ class ListHeroes extends Component {
                 <div className={styles.heroStories}>
                     <h4>Stories:</h4>
                     {hero.stories.length > 0 ?
-                    hero.stories.map(story => (
-                        <span> - {story.name}</span> 
-                    )) :
+                    hero.stories.map(story => {
+                        const randomKey = Math.floor((Math.random() * 100000) + 1)
+                        return <span key={`${hero.id}_${randomKey}`}> - {story.name}</span> 
+                    }) :
                     'nothing found...'}
                 </div>
             </div>
@@ -43,9 +57,7 @@ class ListHeroes extends Component {
         return (
             <div className={styles.container}>
                 <h2>Heroes List</h2>
-                <div>
-                    Searching by: {this.state.search}
-                </div>
+                 <SearchBar onChange={this._handlerOnChangeSearch} defaultValue={this.state.search} /> 
                 <div className={styles.listHeroes}>
                     {this.state.heroes.map(hero => this.getHeroRow(hero))}
                 </div>
