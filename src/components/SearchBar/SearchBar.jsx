@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import HeroesGatewayMarvel from '../../gateways/HeroesGatewayMarvel'
 import styles from './SearchBar.scss'
 
-// Melhorar busca
-// Apenas buscar quando parar de escrever
-
 class SearchBar extends Component {
     constructor(props) {
         super(props)
