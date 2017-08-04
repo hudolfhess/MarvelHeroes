@@ -14,4 +14,14 @@ describe('SearchBar.jsx', () => {
 
         expect(defaultValueProperty).toEqual(wrapper.state().search)
     })
+
+    it('Should value input be equal the search state value', () => {
+        const defaultValueProperty = 'default value'
+        const changingValue = 'changing value'
+
+        const wrapper = shallow(<SearchBar onChange={() => {}} defaultValue={defaultValueProperty} />)
+        wrapper.setState({ search: changingValue })
+
+        expect(changingValue).toEqual(wrapper.find('input').props().value)
+    })
 })
