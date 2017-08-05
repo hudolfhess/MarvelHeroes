@@ -13,7 +13,7 @@ This is a sample project to study about React universe.
 
 
 # Setup
-Create a file .env in root project:
+Create a file .env in `src` folder:
 ```sh
 MARVEL_PUBLIC_KEY={{YOUR_PUBLIC_KEY_HERE}}
 MARVEL_PRIVATE_KEY={{YOUR_PRIVATE_KEY_HERE}
