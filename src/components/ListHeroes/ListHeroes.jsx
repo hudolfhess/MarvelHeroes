@@ -39,16 +39,6 @@ class ListHeroes extends Component {
             <div className={styles.heroImage}><img src={hero.image} /></div>
             <div className={styles.heroInfo}>
                 <p>{hero.name}</p>
-                <p>{hero.wiki ? <a href={hero.wiki} target='_blank'>Wiki (Marvel)</a> : null}</p>
-                <div className={styles.heroStories}>
-                    <h4>Stories:</h4>
-                    {hero.stories.length > 0 ?
-                    hero.stories.map(story => {
-                        const randomKey = Math.floor((Math.random() * 100000) + 1)
-                        return <span key={`${hero.id}_${randomKey}`}> - {story.name}</span> 
-                    }) :
-                    'nothing found...'}
-                </div>
             </div>
         </div>
     }

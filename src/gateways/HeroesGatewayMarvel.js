@@ -17,18 +17,10 @@ class HeroesGatewayMarvel {
             .then(data => (data.json()))
             .then(data => {
                 return data.data.results.map(character => {
-                    const wikiUrl = character.urls.find(url => (url.type === 'wiki'))
                     return {
                         id: character.id,
                         name: character.name,
-                        image: `${character.thumbnail.path}.${character.thumbnail.extension}?${queryStringKey}`,
-                        wiki: wikiUrl ? wikiUrl.url : null,
-                        stories: character.series.items.map(serie => {
-                            return {
-                                id: serie.id,
-                                name: serie.name,
-                            }
-                        })
+                        image: `${character.thumbnail.path}.${character.thumbnail.extension}?${queryStringKey}`
                     }
                 })
             })
