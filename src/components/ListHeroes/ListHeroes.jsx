@@ -17,17 +17,19 @@ class ListHeroes extends Component {
     }
 
     componentDidMount() {
-        this.heroesGateway.getHeroesByName(this.state.search).then(heroes => {
-            this.setState({ heroes })
-        })
+        this.getHeroesByName(this.state.search)
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (this.state.search !== prevState.search) {
-            this.heroesGateway.getHeroesByName(this.state.search).then(heroes => {
-                this.setState({ heroes })
-            })
+            this.getHeroesByName(this.state.search)
         }
+    }
+
+    getHeroesByName(search) {
+        this.heroesGateway.getHeroesByName(search).then(heroes => {
+            this.setState({ heroes })
+        })
     }
 
     handlerOnChangeSearch(search) {
