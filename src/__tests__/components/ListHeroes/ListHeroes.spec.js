@@ -1,5 +1,5 @@
 import React from 'react'
-import { mount, shallow } from 'enzyme'
+import { render, shallow, mount } from 'enzyme'
 import ListHeroes from '../../../components/ListHeroes/ListHeroes'
 import SearchBar from '../../../components/SearchBar/SearchBar'
 
@@ -36,9 +36,7 @@ describe('ListHeroes.jsx', () => {
     })
 
     it('Should render ListHeroes with SearchBar without errors', () => {
-        const wrapper = shallow(<ListHeroes heroesGateway={heroesGatewayMock} />)
-
-        expect(wrapper.find(SearchBar)).toHaveLength(1)
+        const wrapper = render(<ListHeroes heroesGateway={heroesGatewayMock} />)
     })
 
     it('Should call getHeroesByName with initial search state and save on state when component was rendered', () => {
@@ -58,7 +56,17 @@ describe('ListHeroes.jsx', () => {
         wrapper.setState({ search: searchValue })
 
         expect(1).toEqual(heroesGatewayMock.getHeroesByName.mock.calls.length)
-        expect(searchValue).toEqual(heroesGatewayMock.getHeroesByName.mock.calls[0][0])
+        return heroesGatewayMock.getHeroesByName().then(() => {
+            expect(resultGetHeroesByName).toEqual(wrapper.state().heroes)
+        })
+    })
+
+    it('Should not call getHeroesByName when search state was updated with the same value', () => {
+        const wrapper = shallow(<ListHeroes heroesGateway={heroesGatewayMock} />)
+
+        wrapper.setState({ search: wrapper.state().search })
+
+        expect(0).toEqual(heroesGatewayMock.getHeroesByName.mock.calls.length)
     })
 
     it('Should update search state when input on SearchBar was changed', () => {
