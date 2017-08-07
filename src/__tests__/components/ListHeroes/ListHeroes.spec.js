@@ -1,11 +1,8 @@
 import React from 'react'
-import { render, mount, shallow } from 'enzyme'
-import axios from 'axios'
-import httpAdapter from 'axios/lib/adapters/http'
+import { mount, shallow } from 'enzyme'
 import ListHeroes from '../../../components/ListHeroes/ListHeroes'
 import SearchBar from '../../../components/SearchBar/SearchBar'
 
-axios.defaults.adapter = httpAdapter
 jest.useFakeTimers()
 
 describe('ListHeroes.jsx', () => {
