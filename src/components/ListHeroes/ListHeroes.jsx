@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import HeroesGatewayMarvel from '../../gateways/HeroesGatewayMarvel'
+import PropTypes from 'prop-types'
 import SearchBar from '../SearchBar/SearchBar'
 import styles from './ListHeroes.scss'
 
@@ -12,7 +12,6 @@ class ListHeroes extends Component {
             heroes: []
         }
 
-        this.heroesGateway = new HeroesGatewayMarvel()
         this._handlerOnChangeSearch = search => this.handlerOnChangeSearch(search)
     }
 
@@ -27,7 +26,7 @@ class ListHeroes extends Component {
     }
 
     getHeroesByName(search) {
-        this.heroesGateway.getHeroesByName(search).then(heroes => {
+        this.props.heroesGateway.getHeroesByName(search).then(heroes => {
             this.setState({ heroes })
         })
     }
@@ -56,6 +55,10 @@ class ListHeroes extends Component {
             </div>
         )
     }
+}
+
+ListHeroes.propTypes = {
+    heroesGateway: PropTypes.object.isRequired
 }
 
 export default ListHeroes

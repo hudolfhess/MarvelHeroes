@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import HeroesGatewayMarvel from '../../gateways/HeroesGatewayMarvel'
+import PropTypes from 'prop-types'
 import styles from './SearchBar.scss'
 
 class SearchBar extends Component {
@@ -32,6 +32,11 @@ class SearchBar extends Component {
             </div>
         )
     }
+}
+
+SearchBar.propTypes = {
+    defaultValue: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired
 }
 
 export default SearchBar
