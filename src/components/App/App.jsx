@@ -1,14 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import reducers from '../../reducers/reducers'
 import ListHeroes from '../ListHeroes/ListHeroes'
 import HeroesGatewayMarvel from '../../gateways/HeroesGatewayMarvel'
 
-class App extends Component {
-    render() {
-        const heroesGateway = new HeroesGatewayMarvel()
-        return (
-            <ListHeroes heroesGateway={heroesGateway} />
-        )
-    }
-}
+const store = createStore(reducers)
+const heroesGateway = new HeroesGatewayMarvel()
+
+const App = () => (
+    <Provider store={store}>
+        <ListHeroes heroesGateway={heroesGateway} />
+    </Provider>
+)
 
 export default App
