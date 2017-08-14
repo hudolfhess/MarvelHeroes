@@ -76,8 +76,7 @@ describe('ListHeroes.jsx', () => {
         wrapper.find(SearchBar).find('input').simulate('change', { target: { value: searchValue }})
         jest.runOnlyPendingTimers()
 
-        expect(2).toEqual(heroesGatewayMock.getHeroesByName.mock.calls.length)
-        expect(searchValue).toEqual(heroesGatewayMock.getHeroesByName.mock.calls[1][0])
+        expect(searchValue).toEqual(wrapper.state().search)
     })
 
     it('Should render heroes in respectives rows', () => {

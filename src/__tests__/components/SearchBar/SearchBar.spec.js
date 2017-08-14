@@ -17,7 +17,7 @@ describe('SearchBar.jsx', () => {
         expect(defaultValueProperty).toEqual(wrapper.state().search)
     })
 
-    it('Should value input be equal the search state value', () => {
+    it('Should have value input equal to the search state value', () => {
         const defaultValueProperty = 'default value'
         const changingValue = 'changing value'
 
